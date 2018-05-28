@@ -1,0 +1,40 @@
+//////////////// INDEX
+extends ./includes/layout.pug
+
+block content
+    section.container
+        h1.header= title
+        img(src="indentation-war.png")
+        article.item
+            div
+                a.button.add(href="/agregar") Agregar
+            if(data.length)
+                table.table
+                    tr
+                        th Marca
+                        th Tipo
+                        th Trasmision
+                        th Puertas
+                        th Fecha_i
+                        th
+                    each carro in data
+                        tr
+                            td #{carro.Marca}
+                            td #{carro.Tipo}
+                            td #{carro.Trasmision}
+                            td #{carro.Puertas}
+                            td #{carro.Fecha_i}
+                            td
+                                a.button.edit(href="/editar/"+ contacto.id) Editar
+                            td
+                                form(method="post", action="/eliminar/"+ carro.noSerie)
+                                    input(type="hidden",name="_method", value="DELETE")
+                                    input.button.delete(type="button", value="Eliminar", onclick="eliminar(this)")
+                script.
+                    function eliminar(input){
+                        let deleteOK = confirm('¿Estás seguro de eliminar el registro'); // funcion Dos botones aceptar y rechazar
+                        return (deleteOK) ? input.parentNode.submit() : false;
+                        //ParentNode es saber su padre
+                    }
+            else
+                div.error No tienes contactos que mostrar

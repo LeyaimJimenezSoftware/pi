@@ -1,0 +1,25 @@
+///////////////////////////////EDIT
+extends ./includes/layout.pug
+
+block content
+    section.container
+        h1.header= title
+        article.item
+            form.form(method="post", action="/actualizar/" + data[0].id)
+                input(type="hidden", name="_method", value="PUT")
+                input(type="hidden", name="id", value=data[0].id)
+                fieldset
+                    div
+                        inputtype(type ="text", name="Marca", placeholder="Marca", value=data[0].Marca, required)
+                    div
+                        input(type="text", name="Tipo", placeholder="Tipo", value=data[0].Tipo, required)
+                    div
+                        input(type="text", name="Trasmision", placeholder="Trasmision", value=data[0].trasmision, required)
+                    div
+                        input(type="text", name="Puerta", placeholder="equipo", value=data[0].Puerta, required)
+                        
+                    div
+                        input(type="text", name="Fecha introduccion", placeholder="Fecha de introduccion", value=data[0].fecha introdiccion, required)    
+                    div
+                        input.button.edit(type="submit", value="Editar")
+        a.button.show(href="/") Inicio
